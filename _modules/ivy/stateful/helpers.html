@@ -52,8 +52,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/experimental.html">Experimental</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/control_flow_ops.html">Control flow ops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/device.html">Device</a></li>
@@ -204,14 +204,14 @@
     <span class="c1"># noinspection PyProtectedMember</span>
 <div class="viewcode-block" id="ModuleHelpers.track_submod_rets"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.track_submod_rets">[docs]</a>    <span class="k">def</span> <span class="nf">track_submod_rets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Tracks the returns of the submodules if track_submod_returns</span>
-<span class="sd">        argument is set to True during call</span>
+<span class="sd">        Returns True if the current module should have its returns tracked</span>
+<span class="sd">        as set by the user during the call.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            True if the current module gets tracked in the computation</span>
-<span class="sd">            graph.</span>
+<span class="sd">            True if the returned values of the current module should be</span>
+<span class="sd">            tracked.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_mod</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -231,8 +231,8 @@
 
 <div class="viewcode-block" id="ModuleHelpers.check_submod_rets"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.check_submod_rets">[docs]</a>    <span class="k">def</span> <span class="nf">check_submod_rets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compares the submodule returns with the expected submodule</span>
-<span class="sd">        returns passed during call</span>
+<span class="sd">        Returns True if there is an expected submodule return value</span>
+<span class="sd">        set by the user during the call.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -274,12 +274,12 @@
 
 <div class="viewcode-block" id="ModuleHelpers.mod_depth"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.mod_depth">[docs]</a>    <span class="k">def</span> <span class="nf">mod_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the depth of the current module.</span>
+<span class="sd">        Return the depth of the current module. Return 0 for root module.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            The depth of the module in the network. Return 0 for root module.</span>
+<span class="sd">            The depth of the module in the network.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">mod_above</span> <span class="o">=</span> <span class="bp">self</span>
@@ -293,12 +293,12 @@
 
 <div class="viewcode-block" id="ModuleHelpers.mod_height"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.mod_height">[docs]</a>    <span class="k">def</span> <span class="nf">mod_height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the height of the current module.</span>
+<span class="sd">        Return the height of the network, with the current level being 0.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            The height of the network. Return 0 for leaf module.</span>
+<span class="sd">            The height of the network. 0 if the are no submodules.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_mods</span><span class="p">()</span><span class="o">.</span><span class="n">cont_max_depth</span> <span class="o">-</span> <span class="mi">1</span></div>
 
@@ -351,7 +351,8 @@
 
 <div class="viewcode-block" id="ModuleHelpers.get_mod_key"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.get_mod_key">[docs]</a>    <span class="k">def</span> <span class="nf">get_mod_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">top_mod</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the key of current module.</span>
+<span class="sd">        Get the key of current module to be used when checking or tracking the</span>
+<span class="sd">        return values of a submodule.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -378,7 +379,7 @@
 
 <div class="viewcode-block" id="ModuleHelpers.sub_mods"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.sub_mods">[docs]</a>    <span class="k">def</span> <span class="nf">sub_mods</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">show_v</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flatten_key_chains</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return a container composing of all submodules.</span>
+<span class="sd">        Return a container comoposed of all submodules.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -390,12 +391,12 @@
 <span class="sd">            None for current layer. Default is ``None``.</span>
 <span class="sd">        flatten_key_chains</span>
 <span class="sd">            If set True, will return a flat (depth-1) container,</span>
-<span class="sd">            which all nested key-chains flattened. Default is ``False``.</span>
+<span class="sd">            in which all nested key-chains flattened. Default is ``False``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            A container composing of all submodules.</span>
+<span class="sd">            A container composed of all submodules.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sub_mods</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
@@ -423,8 +424,8 @@
 
 <div class="viewcode-block" id="ModuleHelpers.show_v_in_top_v"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.show_v_in_top_v">[docs]</a>    <span class="k">def</span> <span class="nf">show_v_in_top_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Show sub containers from the perspective of value of top layer.</span>
-<span class="sd">        Will give prompt if either of `v` and `top_v` is not initialized.</span>
+<span class="sd">        Show sub containers from the perspective of the top layer.</span>
+<span class="sd">        Will give prompt if either of `v` or `top_v` is not initialized.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -443,7 +444,7 @@
 
 <div class="viewcode-block" id="ModuleHelpers.v_with_top_v_key_chains"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.v_with_top_v_key_chains">[docs]</a>    <span class="k">def</span> <span class="nf">v_with_top_v_key_chains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flatten_key_chains</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Show current layer from the perspective of value of top layer.</span>
+<span class="sd">        Show the network&#39;s variables from the perspective of value of top layer.</span>
 <span class="sd">        Will give prompt if either of `v` and `top_v` is not initialized.</span>
 
 <span class="sd">        Parameters</span>
@@ -452,8 +453,8 @@
 <span class="sd">            The number of modules we want to step in. None for the value of</span>
 <span class="sd">            current module. Default is ``None``.</span>
 <span class="sd">        flatten_key_chains</span>
-<span class="sd">            If set True, will return a flat (depth-1) container,</span>
-<span class="sd">            which all nested key-chains flattened. Default is ``False``.</span>
+<span class="sd">            If set True, will return a flat container,</span>
+<span class="sd">            with all nested key-chains flattened. Default is ``False``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_v</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">):</span>
             <span class="n">kc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_v</span><span class="p">(</span><span class="n">depth</span><span class="p">)</span><span class="o">.</span><span class="n">cont_find_sub_container</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
@@ -473,14 +474,19 @@
 
 <div class="viewcode-block" id="ModuleHelpers.mod_with_top_mod_key_chain"><a class="viewcode-back" href="../../../stateful/helpers/ModuleHelpers.html#ivy.stateful.helpers.ModuleHelpers.mod_with_top_mod_key_chain">[docs]</a>    <span class="k">def</span> <span class="nf">mod_with_top_mod_key_chain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flatten_key_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        (TODO)</span>
+<span class="sd">        Return a list containing the modules of the network starting from the top</span>
+<span class="sd">        module, and ending with the current module.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        depth</span>
+<span class="sd">            If specified, will return a list of modules of length starting at</span>
+<span class="sd">            the current module and ending at the module at the specified depth.</span>
+<span class="sd">            0 for the current module. 1 for the iimediate parent module. None for</span>
+<span class="sd">            the top module. Default is ``None``.</span>
 
 <span class="sd">        flatten_key_chain</span>
-<span class="sd">            If set True, will return return a flat (depth-1) container,</span>
+<span class="sd">            If set True, will return return a flat container,</span>
 <span class="sd">            with all nested key-chains flattened. Default is ``False``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_mod</span><span class="p">)</span> <span class="ow">or</span> <span class="n">depth</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -545,13 +551,12 @@
 
     <span class="k">def</span> <span class="nf">_add_submod_ret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add returns in the submodule return of the top module.</span>
+<span class="sd">        Add returns to submod_rets variable of the top module.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        ret</span>
-<span class="sd">            The return you want to add.</span>
-
+<span class="sd">            The return to be added.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">top_mod</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_mod</span><span class="p">()</span>
         <span class="n">sr</span> <span class="o">=</span> <span class="n">top_mod</span><span class="o">.</span><span class="n">submod_rets</span>
@@ -564,7 +569,7 @@
 
     <span class="k">def</span> <span class="nf">_check_submod_ret</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Check submodule returns with expected submodule returns.</span>
+<span class="sd">        Check the actual submodule returns with the expected submodule return values.</span>
 <span class="sd">        Raise AssertError if returns are not close enough.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">top_mod</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_mod</span><span class="p">()</span>
@@ -624,13 +629,7 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_submod_enter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        (TODO)</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add key chains to submod_call_order variable of the top module.&quot;&quot;&quot;</span>
         <span class="n">sco</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_mod</span><span class="p">()</span><span class="o">.</span><span class="n">submod_call_order</span>
         <span class="n">key_chain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mod_with_top_mod_key_chain</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">key_chain</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>

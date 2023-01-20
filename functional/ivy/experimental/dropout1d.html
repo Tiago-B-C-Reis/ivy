@@ -21,8 +21,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="is_ivy_sparse_array" href="is_ivy_sparse_array.html" />
-    <link rel="prev" title="fft" href="fft.html" /> 
+    <link rel="next" title="ifft" href="ifft.html" />
+    <link rel="prev" title="ivy.Container.static_fft" href="fft/static_fft_container.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,10 +54,13 @@
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../experimental.html">Experimental</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="l2_normalize.html">l2_normalize</a></li>
 <li class="toctree-l2"><a class="reference internal" href="diagflat.html">diagflat</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kron.html">kron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matrix_exp.html">matrix_exp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eig.html">eig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eigvals.html">eigvals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adjoint.html">adjoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flatten.html">flatten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moveaxis.html">moveaxis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ndenumerate.html">ndenumerate</a></li>
@@ -83,6 +86,7 @@
 <li class="toctree-l2"><a class="reference internal" href="dirichlet.html">dirichlet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="beta.html">beta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gamma.html">gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="poisson.html">poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logit.html">logit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="msort.html">msort</a></li>
 <li class="toctree-l2"><a class="reference internal" href="triu_indices.html">triu_indices</a></li>
@@ -101,6 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="dct.html">dct</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fft.html">fft</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">dropout1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ifft.html">ifft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html">embedding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="is_ivy_sparse_array.html">is_ivy_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="is_native_sparse_array.html">is_native_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="native_sparse_array.html">native_sparse_array</a></li>
@@ -109,11 +115,13 @@
 <li class="toctree-l2"><a class="reference internal" href="nanmean.html">nanmean</a></li>
 <li class="toctree-l2"><a class="reference internal" href="unravel_index.html">unravel_index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantile.html">quantile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrcoef.html">corrcoef</a></li>
 <li class="toctree-l2"><a class="reference internal" href="binary_cross_entropy_with_logits.html">binary_cross_entropy_with_logits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sinc.html">sinc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lcm.html">lcm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fmod.html">fmod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fmax.html">fmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fmin.html">fmin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trapz.html">trapz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="float_power.html">float_power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exp2.html">exp2</a></li>
@@ -122,12 +130,12 @@
 <li class="toctree-l2"><a class="reference internal" href="nansum.html">nansum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gcd.html">gcd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="isclose.html">isclose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="isposinf.html">isposinf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="isneginf.html">isneginf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="angle.html">angle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imag.html">imag</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nan_to_num.html">nan_to_num</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logaddexp2.html">logaddexp2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="signbit.html">signbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hypot.html">hypot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="diff.html">diff</a></li>
 <li class="toctree-l2"><a class="reference internal" href="allclose.html">allclose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fix.html">fix</a></li>
@@ -135,6 +143,7 @@
 <li class="toctree-l2"><a class="reference internal" href="zeta.html">zeta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gradient.html">gradient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xlogy.html">xlogy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real.html">real</a></li>
 <li class="toctree-l2"><a class="reference internal" href="isin.html">isin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="is_native_dtype.html">is_native_dtype</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SparseArray.html">SparseArray</a></li>
@@ -142,17 +151,20 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control_flow_ops.html">Control flow ops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elementwise.html">Elementwise</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../experimental.html">Experimental</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="l2_normalize.html">l2_normalize</a></li>
 <li class="toctree-l2"><a class="reference internal" href="diagflat.html">diagflat</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kron.html">kron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matrix_exp.html">matrix_exp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eig.html">eig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eigvals.html">eigvals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adjoint.html">adjoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flatten.html">flatten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moveaxis.html">moveaxis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ndenumerate.html">ndenumerate</a></li>
@@ -178,6 +190,7 @@
 <li class="toctree-l2"><a class="reference internal" href="dirichlet.html">dirichlet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="beta.html">beta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gamma.html">gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="poisson.html">poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logit.html">logit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="msort.html">msort</a></li>
 <li class="toctree-l2"><a class="reference internal" href="triu_indices.html">triu_indices</a></li>
@@ -196,6 +209,8 @@
 <li class="toctree-l2"><a class="reference internal" href="dct.html">dct</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fft.html">fft</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">dropout1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ifft.html">ifft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html">embedding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="is_ivy_sparse_array.html">is_ivy_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="is_native_sparse_array.html">is_native_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="native_sparse_array.html">native_sparse_array</a></li>
@@ -204,11 +219,13 @@
 <li class="toctree-l2"><a class="reference internal" href="nanmean.html">nanmean</a></li>
 <li class="toctree-l2"><a class="reference internal" href="unravel_index.html">unravel_index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantile.html">quantile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrcoef.html">corrcoef</a></li>
 <li class="toctree-l2"><a class="reference internal" href="binary_cross_entropy_with_logits.html">binary_cross_entropy_with_logits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sinc.html">sinc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lcm.html">lcm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fmod.html">fmod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fmax.html">fmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fmin.html">fmin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trapz.html">trapz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="float_power.html">float_power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exp2.html">exp2</a></li>
@@ -217,12 +234,12 @@
 <li class="toctree-l2"><a class="reference internal" href="nansum.html">nansum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gcd.html">gcd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="isclose.html">isclose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="isposinf.html">isposinf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="isneginf.html">isneginf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="angle.html">angle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imag.html">imag</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nan_to_num.html">nan_to_num</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logaddexp2.html">logaddexp2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="signbit.html">signbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hypot.html">hypot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="diff.html">diff</a></li>
 <li class="toctree-l2"><a class="reference internal" href="allclose.html">allclose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fix.html">fix</a></li>
@@ -230,6 +247,7 @@
 <li class="toctree-l2"><a class="reference internal" href="zeta.html">zeta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gradient.html">gradient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xlogy.html">xlogy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real.html">real</a></li>
 <li class="toctree-l2"><a class="reference internal" href="isin.html">isin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="is_native_dtype.html">is_native_dtype</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SparseArray.html">SparseArray</a></li>
@@ -338,14 +356,43 @@ It must have a shape that the inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><p><em>ret</em> –</p>
+<dd class="field-odd"><p><ul>
+<li><p><em>ret</em> –</p>
 <dl class="simple">
 <dt>an array with some channels zero-ed and the rest of channels are</dt><dd><p>scaled by (1/1-prob).</p>
 </dd>
 </dl>
+</li>
+<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
+<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
+<li><p><em>instances in place of any of the arguments.</em></p></li>
+</ul>
 </p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">dropout1d</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[[2., 0, 2.]]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dropout1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;NCW&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[[1, 1, 1]]])</span>
+</pre></div>
+</div>
+<p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:
+&gt;&gt;&gt; x = ivy.Container(a=ivy.array([100, 200, 300]).reshape([1, 1, 3]),
+…                   b=ivy.array([400, 500, 600]).reshape([1, 1, 3]))
+&gt;&gt;&gt; y = ivy.dropout1d(x, 0.5)
+&gt;&gt;&gt; print(y)
+{
+a: ivy.array([[[200., 400., 0.]]]),
+b: ivy.array([[[0., 0., 0.]]])
+}</p>
 </dd></dl>
 
 <div class="line-block">
@@ -359,8 +406,8 @@ It must have a shape that the inputs broadcast to.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="fft.html" class="btn btn-neutral float-left" title="fft" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="is_ivy_sparse_array.html" class="btn btn-neutral float-right" title="is_ivy_sparse_array" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="fft/static_fft_container.html" class="btn btn-neutral float-left" title="ivy.Container.static_fft" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ifft.html" class="btn btn-neutral float-right" title="ifft" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

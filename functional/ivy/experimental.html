@@ -21,7 +21,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="diagflat" href="experimental/diagflat.html" />
+    <link rel="next" title="l2_normalize" href="experimental/l2_normalize.html" />
     <link rel="prev" title="&lt;no title&gt;" href="../ivy.html" /> 
 </head>
 
@@ -54,10 +54,13 @@
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Experimental</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experimental/l2_normalize.html">l2_normalize</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/diagflat.html">diagflat</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/kron.html">kron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/matrix_exp.html">matrix_exp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/eig.html">eig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/eigvals.html">eigvals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/adjoint.html">adjoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/flatten.html">flatten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/moveaxis.html">moveaxis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/ndenumerate.html">ndenumerate</a></li>
@@ -83,6 +86,7 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/dirichlet.html">dirichlet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/beta.html">beta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/gamma.html">gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/poisson.html">poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/logit.html">logit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/msort.html">msort</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/triu_indices.html">triu_indices</a></li>
@@ -101,6 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/dct.html">dct</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fft.html">fft</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/dropout1d.html">dropout1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/ifft.html">ifft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/embedding.html">embedding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/is_ivy_sparse_array.html">is_ivy_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/is_native_sparse_array.html">is_native_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/native_sparse_array.html">native_sparse_array</a></li>
@@ -109,11 +115,13 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/nanmean.html">nanmean</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/unravel_index.html">unravel_index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/quantile.html">quantile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/corrcoef.html">corrcoef</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/binary_cross_entropy_with_logits.html">binary_cross_entropy_with_logits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/sinc.html">sinc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/lcm.html">lcm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fmod.html">fmod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fmax.html">fmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/fmin.html">fmin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/trapz.html">trapz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/float_power.html">float_power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/exp2.html">exp2</a></li>
@@ -122,12 +130,12 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/nansum.html">nansum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/gcd.html">gcd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/isclose.html">isclose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experimental/isposinf.html">isposinf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experimental/isneginf.html">isneginf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/angle.html">angle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/imag.html">imag</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/nan_to_num.html">nan_to_num</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/logaddexp2.html">logaddexp2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/signbit.html">signbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/hypot.html">hypot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/diff.html">diff</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/allclose.html">allclose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fix.html">fix</a></li>
@@ -135,6 +143,7 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/zeta.html">zeta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/gradient.html">gradient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/xlogy.html">xlogy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/real.html">real</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/isin.html">isin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/is_native_dtype.html">is_native_dtype</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/SparseArray.html">SparseArray</a></li>
@@ -142,17 +151,20 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="control_flow_ops.html">Control flow ops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elementwise.html">Elementwise</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Experimental</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experimental/l2_normalize.html">l2_normalize</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/diagflat.html">diagflat</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/kron.html">kron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/matrix_exp.html">matrix_exp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/eig.html">eig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/eigvals.html">eigvals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/adjoint.html">adjoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/flatten.html">flatten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/moveaxis.html">moveaxis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/ndenumerate.html">ndenumerate</a></li>
@@ -178,6 +190,7 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/dirichlet.html">dirichlet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/beta.html">beta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/gamma.html">gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/poisson.html">poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/logit.html">logit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/msort.html">msort</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/triu_indices.html">triu_indices</a></li>
@@ -196,6 +209,8 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/dct.html">dct</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fft.html">fft</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/dropout1d.html">dropout1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/ifft.html">ifft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/embedding.html">embedding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/is_ivy_sparse_array.html">is_ivy_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/is_native_sparse_array.html">is_native_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/native_sparse_array.html">native_sparse_array</a></li>
@@ -204,11 +219,13 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/nanmean.html">nanmean</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/unravel_index.html">unravel_index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/quantile.html">quantile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/corrcoef.html">corrcoef</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/binary_cross_entropy_with_logits.html">binary_cross_entropy_with_logits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/sinc.html">sinc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/lcm.html">lcm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fmod.html">fmod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fmax.html">fmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/fmin.html">fmin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/trapz.html">trapz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/float_power.html">float_power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/exp2.html">exp2</a></li>
@@ -217,12 +234,12 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/nansum.html">nansum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/gcd.html">gcd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/isclose.html">isclose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experimental/isposinf.html">isposinf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experimental/isneginf.html">isneginf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/angle.html">angle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/imag.html">imag</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/nan_to_num.html">nan_to_num</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/logaddexp2.html">logaddexp2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/signbit.html">signbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/hypot.html">hypot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/diff.html">diff</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/allclose.html">allclose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fix.html">fix</a></li>
@@ -230,6 +247,7 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/zeta.html">zeta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/gradient.html">gradient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/xlogy.html">xlogy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/real.html">real</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/isin.html">isin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/is_native_dtype.html">is_native_dtype</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/SparseArray.html">SparseArray</a></li>
@@ -321,7 +339,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../ivy.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="experimental/diagflat.html" class="btn btn-neutral float-right" title="diagflat" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="experimental/l2_normalize.html" class="btn btn-neutral float-right" title="l2_normalize" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

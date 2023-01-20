@@ -55,8 +55,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/experimental.html">Experimental</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/control_flow_ops.html">Control flow ops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/device.html">Device</a></li>
@@ -149,8 +149,8 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.check_submod_rets">
 <span class="sig-name descname"><span class="pre">check_submod_rets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.check_submod_rets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.check_submod_rets" title="Permalink to this definition"></a></dt>
-<dd><p>Compares the submodule returns with the expected submodule
-returns passed during call</p>
+<dd><p>Returns True if there is an expected submodule return value
+set by the user during the call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><em>ret</em> – True if the top module has expected_submod_rets.</p>
@@ -161,7 +161,8 @@ returns passed during call</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.get_mod_key">
 <span class="sig-name descname"><span class="pre">get_mod_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_mod</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.get_mod_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.get_mod_key" title="Permalink to this definition"></a></dt>
-<dd><p>Get the key of current module.</p>
+<dd><p>Get the key of current module to be used when checking or tracking the
+return values of a submodule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>top_mod</strong> – Explicit indicate the top module. None for the top
@@ -176,10 +177,10 @@ module of current module. Default is <code class="docutils literal notranslate">
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.mod_depth">
 <span class="sig-name descname"><span class="pre">mod_depth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.mod_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.mod_depth" title="Permalink to this definition"></a></dt>
-<dd><p>Return the depth of the current module.</p>
+<dd><p>Return the depth of the current module. Return 0 for root module.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>ret</em> – The depth of the module in the network. Return 0 for root module.</p>
+<dd class="field-odd"><p><em>ret</em> – The depth of the module in the network.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -187,10 +188,10 @@ module of current module. Default is <code class="docutils literal notranslate">
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.mod_height">
 <span class="sig-name descname"><span class="pre">mod_height</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.mod_height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.mod_height" title="Permalink to this definition"></a></dt>
-<dd><p>Return the height of the current module.</p>
+<dd><p>Return the height of the network, with the current level being 0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>ret</em> – The height of the network. Return 0 for leaf module.</p>
+<dd class="field-odd"><p><em>ret</em> – The height of the network. 0 if the are no submodules.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -198,12 +199,16 @@ module of current module. Default is <code class="docutils literal notranslate">
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.mod_with_top_mod_key_chain">
 <span class="sig-name descname"><span class="pre">mod_with_top_mod_key_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatten_key_chain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.mod_with_top_mod_key_chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.mod_with_top_mod_key_chain" title="Permalink to this definition"></a></dt>
-<dd><p>(TODO)</p>
+<dd><p>Return a list containing the modules of the network starting from the top
+module, and ending with the current module.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>depth</strong> – </p></li>
-<li><p><strong>flatten_key_chain</strong> – If set True, will return return a flat (depth-1) container,
+<li><p><strong>depth</strong> – If specified, will return a list of modules of length starting at
+the current module and ending at the module at the specified depth.
+0 for the current module. 1 for the iimediate parent module. None for
+the top module. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>flatten_key_chain</strong> – If set True, will return return a flat container,
 with all nested key-chains flattened. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
@@ -244,8 +249,8 @@ which all nested key-chains flattened. Default is <code class="docutils literal 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.show_v_in_top_v">
 <span class="sig-name descname"><span class="pre">show_v_in_top_v</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.show_v_in_top_v"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.show_v_in_top_v" title="Permalink to this definition"></a></dt>
-<dd><p>Show sub containers from the perspective of value of top layer.
-Will give prompt if either of <cite>v</cite> and <cite>top_v</cite> is not initialized.</p>
+<dd><p>Show sub containers from the perspective of the top layer.
+Will give prompt if either of <cite>v</cite> or <cite>top_v</cite> is not initialized.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>depth</strong> – The number of modules we want to step in. None for the value of
@@ -257,7 +262,7 @@ current module. Default is <code class="docutils literal notranslate"><span clas
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.sub_mods">
 <span class="sig-name descname"><span class="pre">sub_mods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatten_key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.sub_mods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.sub_mods" title="Permalink to this definition"></a></dt>
-<dd><p>Return a container composing of all submodules.</p>
+<dd><p>Return a container comoposed of all submodules.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -266,11 +271,11 @@ Default is <code class="docutils literal notranslate"><span class="pre">True</sp
 <li><p><strong>depth</strong> – How many layers we step in before beginning enumerating submodules.
 None for current layer. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>flatten_key_chains</strong> – If set True, will return a flat (depth-1) container,
-which all nested key-chains flattened. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+in which all nested key-chains flattened. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>ret</em> – A container composing of all submodules.</p>
+<dd class="field-even"><p><em>ret</em> – A container composed of all submodules.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -289,12 +294,12 @@ which all nested key-chains flattened. Default is <code class="docutils literal 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.track_submod_rets">
 <span class="sig-name descname"><span class="pre">track_submod_rets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.track_submod_rets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.track_submod_rets" title="Permalink to this definition"></a></dt>
-<dd><p>Tracks the returns of the submodules if track_submod_returns
-argument is set to True during call</p>
+<dd><p>Returns True if the current module should have its returns tracked
+as set by the user during the call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>ret</em> – True if the current module gets tracked in the computation
-graph.</p>
+<dd class="field-odd"><p><em>ret</em> – True if the returned values of the current module should be
+tracked.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -302,15 +307,15 @@ graph.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.stateful.helpers.ModuleHelpers.v_with_top_v_key_chains">
 <span class="sig-name descname"><span class="pre">v_with_top_v_key_chains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatten_key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/stateful/helpers.html#ModuleHelpers.v_with_top_v_key_chains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.stateful.helpers.ModuleHelpers.v_with_top_v_key_chains" title="Permalink to this definition"></a></dt>
-<dd><p>Show current layer from the perspective of value of top layer.
+<dd><p>Show the network’s variables from the perspective of value of top layer.
 Will give prompt if either of <cite>v</cite> and <cite>top_v</cite> is not initialized.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>depth</strong> – The number of modules we want to step in. None for the value of
 current module. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><strong>flatten_key_chains</strong> – If set True, will return a flat (depth-1) container,
-which all nested key-chains flattened. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>flatten_key_chains</strong> – If set True, will return a flat container,
+with all nested key-chains flattened. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
